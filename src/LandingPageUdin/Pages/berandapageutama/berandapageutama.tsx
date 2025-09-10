@@ -12,12 +12,12 @@ const menuData = [
     image: "/images/info.png",
   },
   {
-    title: "News / Update",
+    title: "News",
     description: "Fitur penyebaran konten informasi secara luas melalui video, grafis, audio, teks dan berita-berita.",
     image: "/images/news.png",
   },
   {
-    title: "Streaming Live",
+    title: "Streaming",
     description: "Fitur interaksi satu arah dan dua arah dari pengurus, kader, dan konstituen. Bisa berupa chat, pengumuman, atau live streaming.",
     image: "/images/live.png",
   },
@@ -51,10 +51,10 @@ const BerandaPageUtama: React.FC = () => {
           <img src="/images/maskot.png" alt="Maskot" className="w-36 h-48 my-2 mt-10" />
 
           {/* Typing Animation with Gradient Text */}
-          <h1 className="text-2xl lg:text-3xl font-bold text-center font-roboto bg-gradient-to-r from-green-900 to-green-300 bg-clip-text text-transparent mt-2">
+          <h1 className="text-[25px] lg:text-3xl font-bold text-center font-roboto bg-gradient-to-r from-green-900 to-green-900 bg-clip-text text-transparent mt-2">
             <TypeAnimation
               sequence={[
-                "Selamat Datang di Keluarga Umat  Partai Persatuan Pembangunan",
+                "Selamat Datang di Rumah Umat  Partai Persatuan Pembangunan",
                 () => setShowMenu(true), // ✅ trigger muncul menu setelah selesai
               ]}
               wrapper="span"
