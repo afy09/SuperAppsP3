@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Footer from "../../Components/Footer";
 import MenuItem from "./menuItem";
 import MenuPopup from "./menuPopup";
+import { TypeAnimation } from "react-type-animation";
 
 const menuData = [
   {
@@ -39,6 +40,7 @@ const menuData = [
 
 const BerandaPageUtama: React.FC = () => {
   const [selectedMenu, setSelectedMenu] = useState<number | null>(null);
+  const [showMenu, setShowMenu] = useState(false);
 
   return (
     <motion.div initial={{ x: 300, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -300, opacity: 0 }} transition={{ duration: 0.5 }}>
@@ -48,12 +50,28 @@ const BerandaPageUtama: React.FC = () => {
         <div className="relative z-10 flex flex-col justify-center items-center h-full px-4 mx-2 lg:mx-20 -mt-10">
           <img src="/images/maskot.png" alt="Maskot" className="w-36 h-48 my-2 mt-10" />
 
-          {/* 🔥 Ganti tombol login & register → jadi grid menu */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-10">
-            {menuData.map((menu, index) => (
-              <MenuItem key={index} title={menu.title} image={menu.image} onClick={() => setSelectedMenu(index)} />
-            ))}
-          </div>
+          {/* Typing Animation with Gradient Text */}
+          <h1 className="text-2xl lg:text-3xl font-bold text-center font-roboto bg-gradient-to-r from-green-900 to-green-300 bg-clip-text text-transparent mt-2">
+            <TypeAnimation
+              sequence={[
+                "Selamat Datang di Keluarga Umat  Partai Persatuan Pembangunan",
+                () => setShowMenu(true), // ✅ trigger muncul menu setelah selesai
+              ]}
+              wrapper="span"
+              cursor={true}
+              repeat={0} // ❌ tidak loop biar cuma sekali
+              speed={50}
+            />
+          </h1>
+
+          {/* Grid menu muncul dengan animasi setelah typing selesai */}
+          {showMenu && (
+            <motion.div initial={{ y: 100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, ease: "easeOut" }} className="grid grid-cols-3 md:grid-cols-3 gap-3 mt-10">
+              {menuData.map((menu, index) => (
+                <MenuItem key={index} title={menu.title} image={menu.image} onClick={() => setSelectedMenu(index)} />
+              ))}
+            </motion.div>
+          )}
         </div>
       </section>
 
